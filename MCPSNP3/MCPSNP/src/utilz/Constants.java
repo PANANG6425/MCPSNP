@@ -11,11 +11,11 @@ public class Constants {
 	}
 	
 	public static class PlayerConstants{
-		public static final int IDLE = 7;
-		public static final int walking = 6;
-		public static final int Holdcandle = 100;//ค่าเดิม 0 ขอเปลี่ยน
-		public static final int Covercandle = 200;//ค่าเดิม 2 ขอเปลั้ยน
-		public static final int faint = 8;
+		public static final int IDLE = 7;//7
+		public static final int walking = 5;//5
+		public static final int Holdcandle = 0;//ค่าเดิม 0 ขอเปลี่ยน
+		public static final int Covercandle = 2;//ค่าเดิม 2 ขอเปลั้ยน
+		public static final int faint = 8;//8
 	public static int GetSpriteAmount(int player_action) {
 		
 		switch(player_action) {

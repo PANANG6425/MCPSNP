@@ -22,7 +22,8 @@ public class GamePanel extends JPanel{
 	private int xDelta = 100 , yDelta = 100;
 	private BufferedImage img;
 	private BufferedImage[][] animations;
-	private int aniTick,aniIndex,aniSpeed = 15;
+	private int aniTick,aniSpeed = 14;
+	private int aniIndex = 4;
 	private int playerAction =  IDLE;
 	private int playerDir = -1;
 	private boolean moving = false;
@@ -39,10 +40,10 @@ public class GamePanel extends JPanel{
 		
 	}
 	private void loadAnimations() {
-	animations = new BufferedImage[9][10];
-	for(int j = 0;j <animations.length;j++)
-		for(int i = 0; i < animations[j].length; i++)
-			animations[j][i] = img.getSubimage(i*473,j*480,473,480);
+	animations = new BufferedImage[14][7];
+	for(int j = 0;j <7;j++)
+		for(int i = 0; i <14; i++)
+			animations[i][j] = img.getSubimage(j*292,i*292,292,292);
 		
 	}
 	private void importImg() {
@@ -115,15 +116,30 @@ public class GamePanel extends JPanel{
 		}
 		
 	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		updateAnimationTick();
 		setAnimation();
 		updatePos();
 		
-		g.drawImage(animations[playerAction][aniIndex],(int) xDelta,(int)yDelta,100,100,null);
+		try {
+	        if (playerDir == 0) {
+	            g.drawImage(animations[2][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
+	            System.out.println(aniIndex);
+	        } else if (playerDir == 2) {
+	            g.drawImage(animations[1][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
+	        } else if (playerDir == 3 || playerDir == 1) {
+	            g.drawImage(animations[0][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
+	        } else {
+	            System.out.println("error move");
+	        }
+	    } catch (ArrayIndexOutOfBoundsException e) {
+	        // พบข้อผิดพลาด ArrayIndexOutOfBoundsException
+	        System.err.println("Array index out of bounds. Resetting aniIndex to 0.");
+	        aniIndex = 0;
+	    }
+	
 	
 	}
-	
-	
 }

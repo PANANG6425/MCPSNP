@@ -17,6 +17,7 @@ public class KeyboardInput implements KeyListener{
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub	
 	}
+	private boolean isKeyPressed = false;
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -46,4 +47,5 @@ public class KeyboardInput implements KeyListener{
 			break;
 		}
 	}
+	
 }
