@@ -26,7 +26,7 @@ public class GamePanel extends JPanel{
 	private int aniIndex = 4;
 	private int playerAction =  IDLE;
 	private int playerDir = -1;
-	private boolean moving = false;
+	public boolean moving = false;
 	public GamePanel() {
 		
 		mouse = new Mouse(this);
@@ -98,19 +98,19 @@ public class GamePanel extends JPanel{
 			
 			case 1:
 		        yDelta -=1;
-		        //moving = false;
+		      
 		        break;
 		    case 0:
 		        xDelta -=1;
-		        //moving = false;
+		      
 		        break;
 		    case 2:
 		        xDelta +=1;
-		        //moving = false;
+		       
 		        break;
 		    case 3:
 		        yDelta +=1;  
-		       // moving = false;
+		        
 		        break;
 			}
 		}
@@ -127,11 +127,21 @@ public class GamePanel extends JPanel{
 	        if (playerDir == 0) {
 	            g.drawImage(animations[2][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
 	            System.out.println(aniIndex);
+	           
+	            moving = false;
 	        } else if (playerDir == 2) {
 	            g.drawImage(animations[1][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
+	            
+	            moving = false;
+	            
+	            
 	        } else if (playerDir == 3 || playerDir == 1) {
 	            g.drawImage(animations[0][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
+	           
+	            moving = false;
+	            
 	        } else {
+	        	moving = false;
 	            System.out.println("error move");
 	        }
 	    } catch (ArrayIndexOutOfBoundsException e) {
