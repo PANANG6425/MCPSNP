@@ -154,19 +154,19 @@ public class GamePanel extends JPanel{
 			switch(playerDir) {
 			
 			case 1:
-		        yDelta -=10;
+		        yDelta -=5;
 		      
 		        break;
 		    case 0:
-		        xDelta -=10;
+		        xDelta -=5;
 		      
 		        break;
 		    case 2:
-		        xDelta +=10;
+		        xDelta +=5;
 		       
 		        break;
 		    case 3:
-		        yDelta +=10;  
+		        yDelta +=5;  
 		    case 300:
 		    	yDelta += 0;
 		    	xDelta += 0;

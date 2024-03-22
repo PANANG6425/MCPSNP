@@ -23,10 +23,10 @@ public class KeyboardInput implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			gamePanel.setDirection(Up); // เปลี่ยน Up แทนที่ 0
+			//gamePanel.setDirection(Up); // เปลี่ยน Up แทนที่ 0
 			break;
 		case KeyEvent.VK_S:
-			gamePanel.setDirection(Down);
+			//gamePanel.setDirection(Down);
 			break;
 		case KeyEvent.VK_A:
 			gamePanel.setDirection(Left);
