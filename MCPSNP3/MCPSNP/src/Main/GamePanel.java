@@ -30,6 +30,7 @@ public class GamePanel extends JPanel{
 	
 	private BufferedImage background;
 	private BufferedImage background2;
+	private BufferedImage background3;
 	public int state;
 	
 	public int getState() {
@@ -55,7 +56,7 @@ public class GamePanel extends JPanel{
 		loadAnimations();
 		
 		
-	}
+	}/*
 	public void loadBackground() {
         InputStream is = getClass().getResourceAsStream("background.jpg");
         try {
@@ -69,11 +70,41 @@ public class GamePanel extends JPanel{
                 e.printStackTrace();
             }
         }
-    }
+    }*/
+	public void loadBackground() {
+	    String backgroundImageName = "background" + state + ".jpg"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
+	    InputStream is = getClass().getResourceAsStream(backgroundImageName);
+	    try {
+	        background = ImageIO.read(is);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            is.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
 	public void loadBackground2() {
         InputStream is = getClass().getResourceAsStream("background2.jpg");
         try {
             background2 = ImageIO.read(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+	public void loadBackground3() {
+        InputStream is = getClass().getResourceAsStream("background3.jpg");
+        try {
+            background3 = ImageIO.read(is);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -183,16 +214,21 @@ public class GamePanel extends JPanel{
 		setAnimation();
 		updatePos();
 		
-		if (background != null && state == 1) {
+		if (background != null) {
 			loadBackground();
 			
             g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
-        }
+        }/*
 		else if(background != null && state == 2) {
 			loadBackground2();
 			g.drawImage(background2, 0, 0, getWidth(), getHeight(), null);
 			System.out.println("BG2");
 		}
+		else if(background != null && state == 3) {
+			loadBackground2();
+			g.drawImage(background3, 0, 0, getWidth(), getHeight(), null);
+			System.out.println("BG2");
+		}*/
 		try {
 	        if (playerDir == 0) {
 	            g.drawImage(animations[2][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
