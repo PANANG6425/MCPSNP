@@ -19,7 +19,7 @@ public class GamePanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Mouse mouse;
-	private int xDelta = 100 , yDelta = 100;
+	private int xDelta = 20 , yDelta = 440;
 	private BufferedImage img;
 	private BufferedImage[][] animations;
 	private int aniTick,aniSpeed = 14;
@@ -27,6 +27,23 @@ public class GamePanel extends JPanel{
 	private int playerAction =  IDLE;
 	private int playerDir = -1;
 	public boolean moving = false;
+	
+	private BufferedImage background;
+	private BufferedImage background2;
+	public int state;
+	
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+	public void stateadd() {
+		this.state = this.state + 1;
+	}
+	public void stateneg() {
+		this.state = this.state - 1;
+	}
 	public GamePanel() {
 		
 		mouse = new Mouse(this);
@@ -38,6 +55,46 @@ public class GamePanel extends JPanel{
 		loadAnimations();
 		
 		
+	}
+	public void loadBackground() {
+        InputStream is = getClass().getResourceAsStream("background.jpg");
+        try {
+            background = ImageIO.read(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+	public void loadBackground2() {
+        InputStream is = getClass().getResourceAsStream("background2.jpg");
+        try {
+            background2 = ImageIO.read(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+	public int getxDelta() {
+		return xDelta;
+	}
+	public void setxDelta(int xDelta) {
+		this.xDelta = xDelta;
+	}
+	public int getyDelta() {
+		return yDelta;
+	}
+	public void setyDelta(int yDelta) {
+		this.yDelta = yDelta;
 	}
 	private void loadAnimations() {
 	animations = new BufferedImage[14][7];
@@ -97,22 +154,25 @@ public class GamePanel extends JPanel{
 			switch(playerDir) {
 			
 			case 1:
-		        yDelta -=1;
+		        yDelta -=10;
 		      
 		        break;
 		    case 0:
-		        xDelta -=1;
+		        xDelta -=10;
 		      
 		        break;
 		    case 2:
-		        xDelta +=1;
+		        xDelta +=10;
 		       
 		        break;
 		    case 3:
-		        yDelta +=1;  
-		        
+		        yDelta +=10;  
+		    case 300:
+		    	yDelta += 0;
+		    	xDelta += 0;
 		        break;
 			}
+			
 		}
 		
 	}
@@ -123,6 +183,16 @@ public class GamePanel extends JPanel{
 		setAnimation();
 		updatePos();
 		
+		if (background != null && state == 1) {
+			loadBackground();
+			
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        }
+		else if(background != null && state == 2) {
+			loadBackground2();
+			g.drawImage(background2, 0, 0, getWidth(), getHeight(), null);
+			System.out.println("BG2");
+		}
 		try {
 	        if (playerDir == 0) {
 	            g.drawImage(animations[2][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
@@ -140,6 +210,11 @@ public class GamePanel extends JPanel{
 	           
 	            moving = false;
 	            
+	        }else if (playerDir == 300) {
+	            g.drawImage(animations[0][0], (int) xDelta, (int) yDelta, 100, 100, null);
+	           
+	            moving = false;
+	            
 	        } else {
 	        	moving = false;
 	            System.out.println("error move");
@@ -147,7 +222,7 @@ public class GamePanel extends JPanel{
 	    } catch (ArrayIndexOutOfBoundsException e) {
 	        // พบข้อผิดพลาด ArrayIndexOutOfBoundsException
 	        System.err.println("Array index out of bounds. Resetting aniIndex to 0.");
-	        aniIndex = 0;
+	        aniIndex = 1;
 	    }
 	
 	
