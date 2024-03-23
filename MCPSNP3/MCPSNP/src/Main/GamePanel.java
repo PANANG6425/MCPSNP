@@ -82,7 +82,7 @@ public class GamePanel extends JPanel{
 	
 	public void loadBackground() {
 		System.out.println("state" + state);
-	    String backgroundImageName = "background" + state + ".jpg"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
+	    String backgroundImageName = "background" + state + ".gif"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
 	    InputStream is = getClass().getResourceAsStream(backgroundImageName);
 	    try {
 	        background = ImageIO.read(is);
