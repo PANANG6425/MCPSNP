@@ -30,7 +30,7 @@ public class Game {
 					System.out.println("stop");
 					gamePanel.setDirection(Stop);
 					gamePanel.setxDelta(20);
-					gamePanel.setyDelta(440);
+					gamePanel.setyDelta(498);
 				}
 				else if(gamePanel.getxDelta() < 0) {
 					gamePanel.stateneg();
@@ -38,7 +38,7 @@ public class Game {
 					System.out.println("stop");
 					gamePanel.setDirection(Stop);
 					gamePanel.setxDelta(1300);
-					gamePanel.setyDelta(440);
+					gamePanel.setyDelta(498);
 				}
 				
 				else {

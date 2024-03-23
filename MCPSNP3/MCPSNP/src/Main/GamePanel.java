@@ -19,7 +19,7 @@ public class GamePanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Mouse mouse;
-	private int xDelta = 20 , yDelta = 440;
+	private int xDelta = 20 , yDelta = 498;
 	private BufferedImage img;
 	private BufferedImage[][] animations;
 	private int aniTick,aniSpeed = 14;
@@ -200,19 +200,19 @@ public class GamePanel extends JPanel{
 			switch(playerDir) {
 			
 			case 1:
-		        yDelta -=5;
+		        yDelta -=2;
 		      
 		        break;
 		    case 0:
-		        xDelta -=5;
+		        xDelta -=2;
 		      
 		        break;
 		    case 2:
-		        xDelta +=5;
+		        xDelta +=2;
 		       
 		        break;
 		    case 3:
-		        yDelta +=5;  
+		        yDelta +=2;  
 		    case 300:
 		    	yDelta += 0;
 		    	xDelta += 0;
