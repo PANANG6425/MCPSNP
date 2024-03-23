@@ -22,10 +22,11 @@ public class Game {
 				System.out.println(gamePanel.getxDelta() +  "," + gamePanel.getyDelta());
 				//1366,768
 				//20,430
+	
 				
 				if(gamePanel.getxDelta() > 1366) {
 					gamePanel.stateadd();
-					gamePanel.loadBackground2();
+					gamePanel.loadBackground();
 					System.out.println("stop");
 					gamePanel.setDirection(Stop);
 					gamePanel.setxDelta(20);

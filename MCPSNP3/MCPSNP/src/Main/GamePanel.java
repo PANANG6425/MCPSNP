@@ -78,22 +78,29 @@ public class GamePanel extends JPanel{
             }
         }
     }*/
+	////////////*
+	
 	public void loadBackground() {
+		System.out.println("state" + state);
 	    String backgroundImageName = "background" + state + ".jpg"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
 	    InputStream is = getClass().getResourceAsStream(backgroundImageName);
 	    try {
 	        background = ImageIO.read(is);
 	    } catch (IOException e) {
+	    	
 	        e.printStackTrace();
+
 	    } finally {
 	        try {
 	            is.close();
 	        } catch (IOException e) {
 	            e.printStackTrace();
+	            
 	        }
 	    }
-	}
-
+	}//////////*
+	
+/*
 	public void loadBackground2() {
         InputStream is = getClass().getResourceAsStream("background2.jpg");
         try {
@@ -121,7 +128,7 @@ public class GamePanel extends JPanel{
                 e.printStackTrace();
             }
         }
-    }
+    }*/
 	public int getxDelta() {
 		return xDelta;
 	}
@@ -157,6 +164,7 @@ public class GamePanel extends JPanel{
 	private void setPanalSize() {
 		Dimension size = new Dimension(1366,768);
 		setPreferredSize(size);
+		//setMinimumSize(size);
 	
 }
 	public void setDirection(int direction) {
