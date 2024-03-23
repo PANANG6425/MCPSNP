@@ -342,7 +342,7 @@ public class GamePanel extends JPanel{
 			
 			loadBackground();
 			
-			 g.drawImage(background, bgX, bgY, getWidth(), getHeight(), null);
+			 g.drawImage(background, bgX, bgY, 2100, getHeight(), null);
         }
 		try {
 			if (state == 1) {
