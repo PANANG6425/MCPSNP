@@ -329,25 +329,30 @@ public void loadBackground_dead() {
 	public void setGhost_speed(int ghost_speed) {
 		this.ghost_speed = ghost_speed;
 	}
-	int gh = xDelta;
+	public int gh;
+	
 	public void draw_ghost(Graphics g) {
-		ghost_speed -= 1;
-		g.drawImage(animations[0][aniIndex], (int) (gh) - ghost_speed, (int) yDelta, 100, 100, null);
+		if(ghost_speed > -380) {
+			ghost_speed -= 2;
+		}
+		else {
+			
+		}
+		g.drawImage(animations[0][aniIndex], (int) (xDelta) - (400+ghost_speed), (int) yDelta, 100, 100, null);
+		gh = (xDelta)-(400+ghost_speed);
 		
 	}
 	public void checkmove_with_candle(Graphics g,int playerDir) {
 		try {
 		 if (playerDir == 0) {
 	            g.drawImage(animations[9][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
+	            ghost_speed = 0;
 	            
 	            //ghostX = xDelta-(400) + ghost_speed; wippwop ghost
-	            gh = xDelta-500;
 	          
 	            moving = false;
 	        } else if (playerDir == 2) {
 	            g.drawImage(animations[5][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
-	            
-	            
 	            System.out.println("move draw");
 				draw_ghost(g);
 
