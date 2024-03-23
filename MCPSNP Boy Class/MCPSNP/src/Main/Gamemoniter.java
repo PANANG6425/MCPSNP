@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 
 public class Gamemoniter {
 	private JFrame jframe;
+	public Object boy;
+
 	public Gamemoniter(GamePanel gamePanel) {
 		jframe = new JFrame();
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

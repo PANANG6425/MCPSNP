@@ -1,7 +1,7 @@
 package Main;
 
 import static utilz.Constants.PlayerConstants.*;
-//import static utilz.Constants.Directions.*;
+import static utilz.Constants.Directions.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -13,19 +13,20 @@ import javax.swing.JPanel;
 
 import Inputs.KeyboardInput;
 import Inputs.Mouse;
+
 public class GamePanel extends JPanel{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private Mouse mouse;
-	private Boy boy = new Boy();
-	private int xDelta = 20 , yDelta = 498;
-	private BufferedImage img;
-	private BufferedImage[][] animations;
-	private int aniTick,aniSpeed = 14;
-	private int aniIndex = 4;
-	private int playerAction =  IDLE;
-	private int bgX = 0;
-	private int bgY = 0;
+	public Boy boy = new Boy();
+	//private BufferedImage img;
 	
+	
+	
+	
+	private int bgX = 0;
 	public int getBgX() {
 		return bgX;
 	}
@@ -39,16 +40,11 @@ public class GamePanel extends JPanel{
 		this.bgY = bgY;
 	}
 
-	public int getPlayerAction() {
-		return playerAction;
-	}
-	public void setPlayerAction(int playerAction) {
-		this.playerAction = playerAction;
-	}
-	
+	private int bgY = 0;
 	private BufferedImage background;
-	//private BufferedImage background2;
-	//private BufferedImage background3;
+	public BufferedImage dead;
+	private BufferedImage background2;
+	private BufferedImage background3;
 	public int state;
 	
 	public int getState() {
@@ -63,32 +59,18 @@ public class GamePanel extends JPanel{
 	public void stateneg() {
 		this.state = this.state - 1;
 	}
+	
 	public GamePanel() {
+		
 		mouse = new Mouse(this);
 		setPanalSize();
 		addKeyListener(new KeyboardInput(this));
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
-		importImg();
-		loadAnimations();
+		
+		
+		
 	}
-	
-	/*
-	public void loadBackground() {
-        InputStream is = getClass().getResourceAsStream("background.jpg");
-        try {
-            background = ImageIO.read(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
-	////////////*
 	
 	public void loadBackground() {
 		
@@ -110,100 +92,66 @@ public class GamePanel extends JPanel{
 	        }
 	    }
 	}//////////*
-	
-/*
-	public void loadBackground2() {
-        InputStream is = getClass().getResourceAsStream("background2.jpg");
-        try {
-            background2 = ImageIO.read(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-	public void loadBackground3() {
-        InputStream is = getClass().getResourceAsStream("background3.jpg");
-        try {
-            background3 = ImageIO.read(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
+public void loadBackground_dead() {
+		
+		System.out.println("state" + state);
+	    String backgroundImageName = "background6.gif"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
+	    InputStream is = getClass().getResourceAsStream(backgroundImageName);
+	    try {
+	        dead = ImageIO.read(is);
+	    } catch (IOException e) {
+	    	
+	        e.printStackTrace();
 
-	private void loadAnimations() {
-		animations = new BufferedImage[14][7];
-		for(int j = 0;j <7;j++)
-			for(int i = 0; i <14; i++)
-				animations[i][j] = img.getSubimage(j*292,i*292,292,292);	
+	    } finally {
+	        try {
+	            is.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            
+	        }
+	    }
 	}
 
-	private void importImg() {
-		InputStream is = getClass().getResourceAsStream("boy.png");
-		try {
-			img = ImageIO.read(is);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-			}catch (IOException e) {
-				e.printStackTrace();			
-			}
-		}
-	}
 
 	private void setPanalSize() {
 		Dimension size = new Dimension(1366,768);//1366,768
 		setPreferredSize(size);
 		//setMinimumSize(size);
-	}
-
-	public void updateAnimationTick() {
-		aniTick++;
-		if(aniTick >= aniSpeed) {
-			aniTick = 0;
-			aniIndex++;
-			if(aniIndex >= GetSpriteAmount(playerAction))
-				aniIndex = 0;
-		}
-	}
 	
+}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		updateAnimationTick();
+		boy.updateAnimationTick();
 		boy.setAnimation();
 		boy.updatePos();
-		
+		repaint();
 		if (background != null) {
 			
 			loadBackground();
-			g.drawImage(background, bgX, bgY, 2100, getHeight(), null);
+			
+			 g.drawImage(background, bgX, bgY, 2100, getHeight(), null);
         }
 		try {
 			if (state == 1) {
-				boy.checkmove(g);
+				
+				boy.checkmove(g,boy.getPlayerDir());
 			}
 			else if(state == 2) {
-				boy.checkmove(g);
+				
+				boy.checkmove(g,boy.getPlayerDir());
 			}
 			else if (state == 3 ) {
+				
 				System.out.println("cover");
-				boy.checkmove_with_candle(g);
+				boy.checkmove_with_candle(g,boy.getPlayerDir());
+				
+								
 			}
 			else {
 				System.out.println("no state");
 			}
+			
 			/*
 	        if (playerDir == 0) {
 	            g.drawImage(animations[2][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
@@ -233,7 +181,22 @@ public class GamePanel extends JPanel{
 	    } catch (ArrayIndexOutOfBoundsException e) {
 	        // พบข้อผิดพลาด ArrayIndexOutOfBoundsException
 	        System.err.println("Array index out of bounds. Resetting aniIndex to 0.");
-	        aniIndex = 1;
+	        boy.aniIndex = 1;
 	    }
+	    
+			
+	
+	
 	}
+
+
+	
+	
+
+	
+	
+	
+	
+	
 }
+
