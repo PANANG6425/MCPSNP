@@ -126,7 +126,7 @@ public class GamePanel extends JPanel{
 public void loadBackground_dead() {
 		
 		System.out.println("state" + state);
-	    String backgroundImageName = "dead.gif"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
+	    String backgroundImageName = "background6.gif"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
 	    InputStream is = getClass().getResourceAsStream(backgroundImageName);
 	    try {
 	        dead = ImageIO.read(is);
@@ -243,16 +243,16 @@ public void loadBackground_dead() {
 			switch(playerDir) {
 			
 			case 1:
-		        yDelta -=2;
+		        yDelta -=1;
 		        
 		       
-		       bgY += 2;
+		       bgY += 1;
 		        
 		        break;
 		    case 0:
-		        xDelta -=2;
+		        xDelta -=1;
 		        if(bgX < -100) {
-		        	bgX += 2;
+		        	bgX += 1;
 		        }
 		        else {
 		        
@@ -262,10 +262,10 @@ public void loadBackground_dead() {
 		        
 		        break;
 		    case 2:
-		        xDelta +=2;
+		        xDelta +=1;
 
 		        if(bgX > -650) {
-		        	bgX -= 2;
+		        	bgX -= 1;
 		        }
 		        else {
 		        	
@@ -275,8 +275,8 @@ public void loadBackground_dead() {
 		        
 		        break;
 		    case 3:
-		        yDelta +=2;  
-		        bgY -= 2;
+		        yDelta +=1;  
+		        bgY -= 1;
 		    case 300:
 		    	yDelta += 0;
 		    	xDelta += 0;

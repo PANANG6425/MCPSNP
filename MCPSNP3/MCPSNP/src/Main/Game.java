@@ -18,9 +18,9 @@ public class Game {
 		for (int i = o; i < 1; i--) { 
 			gamePanel.requestFocus();
 
-			if(hittime >  5) {
+			if(hittime >  3) {
 				System.out.println("ENDDDDDDDDDDDDDDDDDDDD");
-				gamePanel.state = 5;
+				gamePanel.state = 6;
 				
 			}
 			else {
@@ -68,7 +68,7 @@ public class Game {
 					
 					else {
 						try {
-							Thread.sleep(1); 
+							Thread.sleep(5); 
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
