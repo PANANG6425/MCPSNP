@@ -2,6 +2,8 @@ package Main;
 
 //import static utilz.Constants.Directions.Right;
 import static utilz.Constants.Directions.*;
+
+import java.awt.datatransfer.SystemFlavorMap;
 public class Game {
 	private Gamemoniter gameMonitor;
 	private GamePanel gamePanel;
@@ -12,14 +14,24 @@ public class Game {
 		gamePanel.setState(1);
 		gamePanel.loadBackground();
 		
-
-		for (int i = 0; i < 1; i--) { 
+		int o = 0;
+		for (int i = o; i < 1; i--) { 
 			gamePanel.requestFocus();
 			
 			while(gamePanel.moving) {
 				gamePanel.updatePos();
 				gamePanel.repaint();
-				System.out.println(gamePanel.getxDelta() +  "," + gamePanel.getyDelta());
+				System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+				System.out.println(gamePanel.getxDelta());
+				System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+				System.out.println(gamePanel.ghostX);
+				System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+			
+				
+				//System.out.println(Math.abs(gamePanel.getxDelta() + gamePanel.ghostX) <1);
+				if(Math.abs(gamePanel.getxDelta() - Math.abs(gamePanel.ghostX)) <50){
+					gamePanel.setxDelta(100);
+				}
 				//1366,768
 				//20,430
 				System.out.println("x" + gamePanel.getBgX());
@@ -54,9 +66,8 @@ public class Game {
 					}
 				}
 			}
-			
 		}
-	
+		System.out.println("breakkkkkkk");
 	}
 	
 }

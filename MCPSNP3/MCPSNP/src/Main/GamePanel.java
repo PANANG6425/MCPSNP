@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import Inputs.KeyboardInput;
 import Inputs.Mouse;
+
 public class GamePanel extends JPanel{
 	/**
 	 * 
@@ -25,7 +26,6 @@ public class GamePanel extends JPanel{
 	private int aniTick,aniSpeed = 14;
 	private int aniIndex = 4;
 	private int playerAction =  IDLE;
-	
 	
 	
 	private int bgX = 0;
@@ -58,6 +58,7 @@ public class GamePanel extends JPanel{
 	public boolean moving = false;
 	
 	private BufferedImage background;
+	public BufferedImage dead;
 	private BufferedImage background2;
 	private BufferedImage background3;
 	public int state;
@@ -122,7 +123,26 @@ public class GamePanel extends JPanel{
 	        }
 	    }
 	}//////////*
-	
+public void loadBackground_dead() {
+		
+		System.out.println("state" + state);
+	    String backgroundImageName = "dead.gif"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
+	    InputStream is = getClass().getResourceAsStream(backgroundImageName);
+	    try {
+	        dead = ImageIO.read(is);
+	    } catch (IOException e) {
+	    	
+	        e.printStackTrace();
+
+	    } finally {
+	        try {
+	            is.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            
+	        }
+	    }
+	}
 /*
 	public void loadBackground2() {
         InputStream is = getClass().getResourceAsStream("background2.jpg");
@@ -299,27 +319,54 @@ public class GamePanel extends JPanel{
 	        aniIndex = 1;
 	    }
 	}
+	public int ghostX;
+	public int ghostY;
+	public int ghost_speed = 1;
+	
+	public int getGhost_speed() {
+		return ghost_speed;
+	}
+	public void setGhost_speed(int ghost_speed) {
+		this.ghost_speed = ghost_speed;
+	}
+	int gh = xDelta;
+	public void draw_ghost(Graphics g) {
+		ghost_speed -= 1;
+		g.drawImage(animations[0][aniIndex], (int) (gh) - ghost_speed, (int) yDelta, 100, 100, null);
+		
+	}
 	public void checkmove_with_candle(Graphics g,int playerDir) {
 		try {
 		 if (playerDir == 0) {
 	            g.drawImage(animations[9][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
-	            System.out.println(aniIndex);
-	           
+	            
+	            //ghostX = xDelta-(400) + ghost_speed; wippwop ghost
+	            gh = xDelta-500;
+	          
 	            moving = false;
 	        } else if (playerDir == 2) {
 	            g.drawImage(animations[5][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
 	            
+	            
+	            System.out.println("move draw");
+				draw_ghost(g);
+
 	            moving = false;
 	            
 	            
 	        } else if (playerDir == 3 || playerDir == 1) {
 	            g.drawImage(animations[3][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
-	           
+	            System.out.println("move draw");
+				
+
 	            moving = false;
 	            
 	        }else if (playerDir == 200) {
 	            g.drawImage(animations[0][0], (int) xDelta, (int) yDelta, 100, 100, null);
 	            System.out.println("stop animation by released");
+	            System.out.println("move draw");
+				
+
 	            moving = false;
 	            
 	        } else {
@@ -337,7 +384,7 @@ public class GamePanel extends JPanel{
 		updateAnimationTick();
 		setAnimation();
 		updatePos();
-		
+		repaint();
 		if (background != null) {
 			
 			loadBackground();
@@ -357,10 +404,13 @@ public class GamePanel extends JPanel{
 				
 				System.out.println("cover");
 				checkmove_with_candle(g,playerDir);
+				
+								
 			}
 			else {
 				System.out.println("no state");
 			}
+			
 			/*
 	        if (playerDir == 0) {
 	            g.drawImage(animations[2][aniIndex], (int) xDelta, (int) yDelta, 100, 100, null);
@@ -397,4 +447,5 @@ public class GamePanel extends JPanel{
 	
 	
 	}
+
 }
