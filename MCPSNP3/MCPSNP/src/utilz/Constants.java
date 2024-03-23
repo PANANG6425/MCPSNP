@@ -7,7 +7,7 @@ public class Constants {
 		public static final int  Up = 1;
 		public static final int  Right= 2;
 		public static final int  Down = 3;
-		public static final int Stop = 300;
+		public static final int Stop = 200;
 		
 	}
 	

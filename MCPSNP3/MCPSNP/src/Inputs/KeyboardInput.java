@@ -41,9 +41,18 @@ public class KeyboardInput implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_W:
+			//gamePanel.moving = true;
+			//gamePanel.setPlayerAction(Stop);
 		case KeyEvent.VK_S:
+			//gamePanel.moving = true;
+			//gamePanel.setPlayerAction(Stop);
 		case KeyEvent.VK_A:
+			//gamePanel.moving = true;
+			//gamePanel.setPlayerAction(Stop);
 		case KeyEvent.VK_D:
+			//gamePanel.moving = true;
+			//gamePanel.setPlayerAction(Stop);
+			//System.out.println("d stop");
 			break;
 		}
 	}
