@@ -22,9 +22,12 @@ public class Game {
 				System.out.println(gamePanel.getxDelta() +  "," + gamePanel.getyDelta());
 				//1366,768
 				//20,430
-	
+				System.out.println("x" + gamePanel.getBgX());
+				System.out.println("y" + gamePanel.getBgY());
 				
 				if(gamePanel.getxDelta() > 1366) {
+					gamePanel.setBgX(0);
+					gamePanel.setBgY(0);
 					gamePanel.stateadd();
 					gamePanel.loadBackground();
 					System.out.println("stop");
@@ -33,6 +36,8 @@ public class Game {
 					gamePanel.setyDelta(498);
 				}
 				else if(gamePanel.getxDelta() < 0) {
+					gamePanel.setBgX(0);
+					gamePanel.setBgY(0);
 					gamePanel.stateneg();
 					gamePanel.loadBackground();
 					System.out.println("stop");

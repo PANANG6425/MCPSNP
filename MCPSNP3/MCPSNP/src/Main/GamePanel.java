@@ -25,6 +25,28 @@ public class GamePanel extends JPanel{
 	private int aniTick,aniSpeed = 14;
 	private int aniIndex = 4;
 	private int playerAction =  IDLE;
+	
+	
+	
+	private int bgX = 0;
+	public int getBgX() {
+		return bgX;
+	}
+	public void setBgX(int bgX) {
+		this.bgX = bgX;
+	}
+	public int getBgY() {
+		return bgY;
+	}
+	public void setBgY(int bgY) {
+		this.bgY = bgY;
+	}
+
+	private int bgY = 0;
+
+	
+	
+	
 	public int getPlayerAction() {
 		return playerAction;
 	}
@@ -81,6 +103,7 @@ public class GamePanel extends JPanel{
 	////////////*
 	
 	public void loadBackground() {
+		
 		System.out.println("state" + state);
 	    String backgroundImageName = "background" + state + ".gif"; // สร้างชื่อไฟล์ภาพพื้นหลังโดยใช้ state
 	    InputStream is = getClass().getResourceAsStream(backgroundImageName);
@@ -162,7 +185,7 @@ public class GamePanel extends JPanel{
 		}
 	}
 	private void setPanalSize() {
-		Dimension size = new Dimension(1366,768);
+		Dimension size = new Dimension(1366,768);//1366,768
 		setPreferredSize(size);
 		//setMinimumSize(size);
 	
@@ -201,18 +224,39 @@ public class GamePanel extends JPanel{
 			
 			case 1:
 		        yDelta -=2;
-		      
+		        
+		       
+		       bgY += 2;
+		        
 		        break;
 		    case 0:
 		        xDelta -=2;
-		      
+		        if(bgX < -100) {
+		        	bgX += 2;
+		        }
+		        else {
+		        
+		        }
+		        
+		        
+		        
 		        break;
 		    case 2:
 		        xDelta +=2;
+
+		        if(bgX > -650) {
+		        	bgX -= 2;
+		        }
+		        else {
+		        	
+		        }
 		       
+		        
+		        
 		        break;
 		    case 3:
 		        yDelta +=2;  
+		        bgY -= 2;
 		    case 300:
 		    	yDelta += 0;
 		    	xDelta += 0;
@@ -295,18 +339,22 @@ public class GamePanel extends JPanel{
 		updatePos();
 		
 		if (background != null) {
+			
 			loadBackground();
 			
-            g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+			 g.drawImage(background, bgX, bgY, getWidth(), getHeight(), null);
         }
 		try {
 			if (state == 1) {
+				
 				checkmove(g,playerDir);
 			}
 			else if(state == 2) {
+				
 				checkmove(g,playerDir);
 			}
 			else if (state == 3 ) {
+				
 				System.out.println("cover");
 				checkmove_with_candle(g,playerDir);
 			}
