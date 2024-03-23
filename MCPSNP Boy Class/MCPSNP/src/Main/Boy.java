@@ -81,10 +81,10 @@ public class Boy extends JPanel {
 	        return this.playerDir;
 	    }
 
-	    /*public boolean getMoving()
+	    public boolean getMoving()
 	    {
 	        return this.moving;
-	    }*/
+	    }
 
 	public void updatePos() {
        if (moving) {
@@ -191,7 +191,7 @@ public class Boy extends JPanel {
 	}
 
     public int getxDelta() {
-        return this.xDelta;
+        return xDelta;
     }
 
     public void setxDelta(int xDelta) {
