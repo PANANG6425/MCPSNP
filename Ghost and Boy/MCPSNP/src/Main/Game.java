@@ -8,7 +8,7 @@ public class Game {
 	private Gamemoniter gameMonitor;
 	private GamePanel gamePanel;
 	public Boy boy = new Boy();
-	public Ghost ghost = new Ghost();
+	public Ghost ghost= new Ghost();
 	int hittime = 0;
 	public Game() {
 		
@@ -23,7 +23,7 @@ public class Game {
 		for (int i = o; i < 1; i--) { 
 			gamePanel.requestFocus();
 
-			if(hittime >  100) {
+			if(hittime >  3) {
 				System.out.println("ENDDDDDDDDDDDDDDDDDDDD");
 				gamePanel.state = 6;
 				break;

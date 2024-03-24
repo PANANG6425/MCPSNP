@@ -64,7 +64,7 @@ public class Boy extends JPanel {
         }
     }
     private static int xDelta = 20;
-	protected static int yDelta = 440;
+	protected static int yDelta = 505;
 	public static boolean moving = false;
 	public static int playerDir = -1;
 	public static void setDirection(int direction) {
@@ -92,12 +92,18 @@ public class Boy extends JPanel {
            switch (playerDir) {
                case Left:
                    xDelta -= 5;
+                   if(GamePanel.getBgX() < -100) {
+                	   GamePanel.setBgX(GamePanel.getBgX() + 5);
+                   }
                    break;
                case Up:
                    yDelta -= 5;
                    break;
                case Right:
                    xDelta += 5;
+                   if(GamePanel.getBgX() > -650) {
+                	   GamePanel.setBgX(GamePanel.getBgX() - 5);
+                   }
                    break;
                case Down:
                    yDelta += 5;

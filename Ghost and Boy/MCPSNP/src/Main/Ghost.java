@@ -26,7 +26,7 @@ public class Ghost extends Boy {
 
 	public void draw_ghost(Graphics g) {
         if (ghost_speed > -380) {
-            ghost_speed -= 10;
+            ghost_speed -= 50;
         }
         g.drawImage(animations[0][0], (int) (getxDelta()) - (400 + ghost_speed), (int) getyDelta(), 100, 100, null);
         gh = (getxDelta()) - (400 + ghost_speed);

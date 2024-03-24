@@ -19,6 +19,7 @@ public class GamePanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final String GamaPanel = null;
 	private Mouse mouse;
 	public Boy boy = new Boy();
 	public Ghost ghost = new Ghost();
@@ -45,7 +46,7 @@ public class GamePanel extends JPanel{
 	*/
 	
 	private static int bgX = 0;
-    private int bgY = 0;
+    private static int bgY = 0;
 
     public static int getBgX() {
         return bgX;
