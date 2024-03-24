@@ -7,9 +7,11 @@ import java.awt.datatransfer.SystemFlavorMap;
 public class Game {
 	private Gamemoniter gameMonitor;
 	private GamePanel gamePanel;
-	
+	public Boy boy = new Boy();
+	public Ghost ghost = new Ghost();
 	int hittime = 0;
 	public Game() {
+		
 		gamePanel = new GamePanel();
 		gameMonitor = new Gamemoniter(gamePanel);
 		gamePanel.setState(1);
@@ -31,18 +33,18 @@ public class Game {
 				while(gamePanel.boy.getMoving()) {
 					System.out.println("moving");
 					gamePanel.boy.updatePos();
-					gamePanel.repaint();/*
+					gamePanel.repaint();
 					System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 					System.out.println(gamePanel.boy.getxDelta());
 					System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-					//System.out.println(gamePanel.boy.get_gh());
-					System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");*/
+					System.out.println(gamePanel.ghost.getgh());
+					System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 					System.out.println("HIT TIME" + hittime);
 					//System.out.println(Math.abs(gamePanel.getxDelta() + gamePanel.ghostX) <1);
-					if(Math.abs(gamePanel.boy.getxDelta() - (gamePanel.boy.get_gh())) <=50){
+					if(Math.abs(gamePanel.boy.getxDelta() - (gamePanel.ghost.getgh())) <=50){
 						gamePanel.boy.setxDelta(100);
 						System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-						Ghost.ghost_speed = 400;
+						ghost.setGhost_speed(400);
 						hittime +=1;
 					}
 					//1366,768

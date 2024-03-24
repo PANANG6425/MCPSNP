@@ -7,12 +7,15 @@ public class Ghost extends Boy {
     public int ghostX;
     public int ghostY;
     public static int ghost_speed = 1;
-    public int gh;
+    public static int  gh;
 
     public Ghost() {
         super(); // เรียก constructor ของคลาส Boy
     }
-
+    
+   	public int getgh() {
+   		return Ghost.gh;
+   	}
     public int getGhost_speed() {
 		return ghost_speed;
 	}
@@ -23,10 +26,12 @@ public class Ghost extends Boy {
 
 	public void draw_ghost(Graphics g) {
         if (ghost_speed > -380) {
-            ghost_speed -= 50;
+            ghost_speed -= 10;
         }
         g.drawImage(animations[0][0], (int) (getxDelta()) - (400 + ghost_speed), (int) getyDelta(), 100, 100, null);
         gh = (getxDelta()) - (400 + ghost_speed);
+        
+        
        
     }
 }

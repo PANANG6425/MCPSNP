@@ -21,6 +21,7 @@ public class GamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private Mouse mouse;
 	public Boy boy = new Boy();
+	public Ghost ghost = new Ghost();
 	//private BufferedImage img;
 	
 	

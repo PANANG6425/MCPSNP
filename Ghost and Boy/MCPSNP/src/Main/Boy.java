@@ -119,19 +119,7 @@ public class Boy extends JPanel {
     }
 
     
-    public int ghostX;
-	public int ghostY;
-	public int ghost_speed = 1;
-	public int gh = 0;
-	public int get_gh() {
-		return this.gh;
-	}
-    public int getGhost_speed() {
-		return ghost_speed;
-	}
-	public void setGhost_speed(int ghost_speed) {
-		this.ghost_speed = ghost_speed;
-	}
+   
     public void checkmove(Graphics g,int playerDir) {
     
 		try {
