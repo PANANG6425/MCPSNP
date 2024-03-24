@@ -1,2 +1,2 @@
-JAVA 17 นะครัย
+JAVA 13นะครัย
 run บน eclip
